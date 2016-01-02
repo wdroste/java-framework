@@ -22,7 +22,8 @@
  your own identifying information:
  "Portions Copyrighted [year] [name of copyright owner]"
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.forgerock</groupId>
@@ -65,7 +66,7 @@
         <developerConnection>scm:git:ssh://git@bitbucket.org:brinqa/java-framework.git</developerConnection>
         <url>https://bitbucket.org/brinqa/java-framework</url>
         <tag>1.5.0.0</tag>
-  </scm>
+    </scm>
     <distributionManagement>
         <site>
             <id>forgerock.org</id>
@@ -119,29 +120,14 @@
     </mailingLists>
 
     <issueManagement>
-        <system>jira</system>
-        <url>https://bugster.forgerock.org/jira/browse/OPENICF/component/10192</url>
+        <system>bitbucket</system>
+        <url>https://bitbucket.org/brinqa/java-framework/issues</url>
     </issueManagement>
 
     <ciManagement>
         <system>jenkins</system>
-        <url>https://ci.forgerock.org/view/OpenICF/job/OpenICF - java-framework - postcommit/</url>
+        <url>http://jenkins.brinqa.com/job/connector_framework</url>
     </ciManagement>
-
-    <developers>
-        <developer>
-            <id>forgerock</id>
-            <name>OpenICF Community</name>
-            <email>openicf@forgerock.org</email>
-            <organization>ForgeRock</organization>
-            <roles>
-                <role>Architect</role>
-                <role>Release Manager</role>
-                <role>Java Developer</role>
-            </roles>
-            <timezone>+1</timezone>
-        </developer>
-    </developers>
 
     <properties>
         <!-- maven-compiler-plugin -->
@@ -150,14 +136,6 @@
         <framework.compatibilityVersion>1.5</framework.compatibilityVersion>
         <framework.releaseVersion>0.0</framework.releaseVersion>
         <licenseResourceBundle>org.forgerock.openicf:openicf-license:1.3.0</licenseResourceBundle>
-        <siteDistributionURL>scp://community.internal.forgerock.com/var/www/vhosts/openicf.forgerock.org/httpdocs
-        </siteDistributionURL>
-
-        <openicf.osgi.remove.headers>
-            Ignore-Package,Include-Resource,Private-Package,Bundle-DocURL,Embedded-Artifacts,Embed-Dependency,Built-By,
-            Build-Jdk,Tool
-        </openicf.osgi.remove.headers>
-
         <openicf.maven.plugin.version>1.5.0-RC1</openicf.maven.plugin.version>
         <slf4j.version>1.7.12</slf4j.version>
         <logback.version>1.1.3</logback.version>
@@ -168,16 +146,9 @@
         <!-- Core documentation properties -->
         <frDocPluginVersion>3.1.0</frDocPluginVersion>
         <docTargetVersion>${project.version}</docTargetVersion>
-        <googleAnalyticsAccountId>UA-23412190-10</googleAnalyticsAccountId>
-        <!--
-            Release date is specified only when building the documentation
-            for publication. For example:
-                -D"releaseDate=Software release date: January 1, 1970"
-            Otherwise release date should remain empty.
-        -->
-        <releaseDate />
+        <releaseDate/>
         <softwareReleaseDate>${releaseDate}</softwareReleaseDate>
-        <pubDate />
+        <pubDate/>
         <publicationDate>${pubDate}</publicationDate>
         <!--
         <publishedDocBase>http://docs.forgerock.org/en/</publishedDocBase>
