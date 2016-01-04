@@ -68,11 +68,16 @@
         <tag>1.5.0.0</tag>
     </scm>
     <distributionManagement>
-        <site>
-            <id>forgerock.org</id>
-            <name>ForgeRock Community Server</name>
-            <url>${siteDistributionURL}</url>
-        </site>
+        <repository>
+            <id>maven.brinqa.com</id>
+            <name>maven.brinqa.com-releases</name>
+            <url>http://maven.brinqa.com/artifactory/libs-release-local</url>
+        </repository>
+        <snapshotRepository>
+            <id>maven.brinqa.com</id>
+            <name>maven.brinqa.com-snapshots</name>
+            <url>http://maven.brinqa.com/artifactory/libs-snapshot-local</url>
+        </snapshotRepository>
     </distributionManagement>
 
     <!-- (see FAQ at http://maven.apache.org/guides/mini/guide-central-repository-upload.html ) -->
@@ -95,29 +100,6 @@
         </repository>
     </repositories>
 
-    <mailingLists>
-        <mailingList>
-            <name>OpenICF: Technical communications</name>
-            <post>openicf@forgerock.org</post>
-            <subscribe>https://lists.forgerock.org/mailman/listinfo/openicf</subscribe>
-            <unsubscribe>https://lists.forgerock.org/mailman/listinfo/openicf</unsubscribe>
-            <archive>https://lists.forgerock.org/pipermail/openicf/</archive>
-        </mailingList>
-        <mailingList>
-            <name>OpenICF: Commit Notifications</name>
-            <post>commitopenicf@forgerock.org</post>
-            <subscribe>https://lists.forgerock.org/mailman/listinfo/commitopenicf</subscribe>
-            <unsubscribe>https://lists.forgerock.org/mailman/listinfo/commitopenicf</unsubscribe>
-            <archive>https://lists.forgerock.org/pipermail/commitopenicf/</archive>
-        </mailingList>
-        <mailingList>
-            <name>OpenICF: Developers</name>
-            <post>openicf-dev@forgerock.org</post>
-            <subscribe>https://lists.forgerock.org/mailman/listinfo/openicf-dev</subscribe>
-            <unsubscribe>https://lists.forgerock.org/mailman/listinfo/openicf-dev</unsubscribe>
-            <archive>https://lists.forgerock.org/pipermail/openicf-dev/</archive>
-        </mailingList>
-    </mailingLists>
 
     <issueManagement>
         <system>bitbucket</system>
