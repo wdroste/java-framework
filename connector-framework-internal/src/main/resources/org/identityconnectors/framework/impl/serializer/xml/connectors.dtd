@@ -331,6 +331,7 @@ OperationOptionInfo | SearchResult | SyncDeltaType | SyncToken | SyncDelta | Qua
 <!ATTLIST AttributeInfo
    name CDATA #REQUIRED
    type CDATA #REQUIRED
+   title CDATA #IMPLIED
 >
 <!ELEMENT AttributeInfoFlag EMPTY>
 <!ATTLIST AttributeInfoFlag

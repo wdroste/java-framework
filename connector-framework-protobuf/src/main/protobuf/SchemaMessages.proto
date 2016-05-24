@@ -32,6 +32,7 @@ message AttributeInfo {
     string name = 1;
     AttributeType type = 2;
     repeated Flags flags = 3;
+    string title = 4;
 }
 
 message ObjectClassInfo {

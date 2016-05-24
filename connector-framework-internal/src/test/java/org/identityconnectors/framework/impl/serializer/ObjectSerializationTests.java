@@ -24,12 +24,6 @@
 
 package org.identityconnectors.framework.impl.serializer;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertNull;
-import static org.testng.Assert.assertTrue;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.math.BigDecimal;
@@ -124,6 +118,8 @@ import org.identityconnectors.framework.impl.api.remote.messages.OperationRespon
 import org.identityconnectors.framework.impl.api.remote.messages.OperationResponsePause;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import static org.testng.Assert.*;
 
 public class ObjectSerializationTests {
 
@@ -605,6 +601,17 @@ public class ObjectSerializationTests {
         v2 = (AttributeInfo)cloneObject(v1);
         assertEquals(v1,v2);
 
+        // make sure the object substitutes the name for the title..
+        assertEquals(v1.getTitle(), v2.getTitle());
+        assertEquals(v1.getName(), v1.getTitle());
+        assertEquals(v1.getTitle(), v2.getName());
+
+        // test w/ title
+        builder.setTitle("my_title");
+        v1 = builder.build();
+        v2 = (AttributeInfo)cloneObject(v1);
+        assertEquals(v1,v2);
+        assertEquals("my_title", v1.getTitle());
     }
 
     @Test

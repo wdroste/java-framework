@@ -53,6 +53,7 @@ public final class AttributeInfo {
     private final String name;
     private final Class<?> type;
     private final Set<Flags> flags;
+    private final String title;
 
     /**
      * Enum of modifier flags to use for attributes. Note that this enum is
@@ -71,7 +72,7 @@ public final class AttributeInfo {
         REQUIRED, MULTIVALUED, NOT_CREATABLE, NOT_UPDATEABLE, NOT_READABLE, NOT_RETURNED_BY_DEFAULT
     }
 
-    AttributeInfo(final String name, final Class<?> type, final Set<Flags> flags) {
+    AttributeInfo(final String name, final Class<?> type, final Set<Flags> flags, String title) {
         if (StringUtil.isBlank(name)) {
             throw new IllegalStateException("Name must not be blank!");
         }
@@ -86,6 +87,8 @@ public final class AttributeInfo {
         FrameworkUtil.checkAttributeType(type);
         this.name = name;
         this.type = type;
+        // default the title to the name
+        this.title = StringUtil.isBlank(title) ? name : title;
         this.flags = Collections.unmodifiableSet(EnumSet.copyOf(flags));
         if (!isReadable() && isReturnedByDefault()) {
             throw new IllegalArgumentException(
@@ -102,6 +105,15 @@ public final class AttributeInfo {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * The display name of the attribute.
+     *
+     * @return the display name of this attribute.
+     */
+    public String getTitle() {
+        return title;
     }
 
     /**
@@ -205,6 +217,9 @@ public final class AttributeInfo {
                 return false;
             }
             if (!getType().equals(other.getType())) {
+                return false;
+            }
+            if (!getTitle().equals(other.getTitle())) {
                 return false;
             }
             if (!CollectionUtil.equals(flags, other.flags)) {

@@ -47,6 +47,7 @@ public final class AttributeInfoBuilder {
 
     private String name;
     private Class<?> type;
+    private String title;
     private final EnumSet<Flags> flags;
 
     /**
@@ -116,7 +117,7 @@ public final class AttributeInfoBuilder {
      * @return {@link AttributeInfo} based on the properties set.
      */
     public AttributeInfo build() {
-        return new AttributeInfo(name, type, flags);
+        return new AttributeInfo(name, type, flags, title);
     }
 
     /**
@@ -145,6 +146,17 @@ public final class AttributeInfoBuilder {
     public AttributeInfoBuilder setType(final Class<?> value) {
         FrameworkUtil.checkAttributeType(value);
         type = value;
+        return this;
+    }
+
+    /**
+     * Set the title for this attribute.
+     *
+     * @param value
+     *          title to set for the attribute.
+     */
+    public AttributeInfoBuilder setTitle(final String value) {
+        title = value;
         return this;
     }
 
