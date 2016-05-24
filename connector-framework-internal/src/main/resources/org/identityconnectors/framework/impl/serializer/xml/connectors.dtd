@@ -331,6 +331,7 @@ OperationOptionInfo | SyncDeltaType | SyncToken | SyncDelta | QualifiedUid
 <!ATTLIST AttributeInfo
    name CDATA #REQUIRED
    type CDATA #REQUIRED
+   title CDATA #IMPLIED
 >
 <!ELEMENT AttributeInfoFlag EMPTY>
 <!ATTLIST AttributeInfoFlag
