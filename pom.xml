@@ -61,9 +61,9 @@
         </license>
     </licenses>
     <scm>
-        <connection>scm:svn:https://svn.forgerock.org/openicf/trunk/framework/java</connection>
-        <developerConnection>scm:svn:https://svn.forgerock.org/openicf/trunk/framework/java</developerConnection>
-        <url>http://sources.forgerock.org/browse/openicf/trunk/framework/java</url>
+        <connection>scm:svn:https://svn.forgerock.org/openicf/branches/framework-1.4.1.x/java</connection>
+        <developerConnection>scm:svn:https://svn.forgerock.org/openicf/branches/framework-1.4.1.x/java</developerConnection>
+        <url>http://sources.forgerock.org/browse/openicf/branches/framework-1.4.0.x/java</url>
     </scm>
     <distributionManagement>
         <site>
@@ -241,6 +241,14 @@
                                 goal leads to a missing artifact error.
                              -->
                             <preparationGoals>clean,install</preparationGoals>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <source>${maven.compiler.source}</source>
+                            <target>${maven.compiler.target}</target>
                         </configuration>
                     </plugin>
                 </plugins>

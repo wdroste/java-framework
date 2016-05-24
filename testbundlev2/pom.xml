@@ -42,7 +42,7 @@
         <dependency>
             <groupId>org.forgerock.openicf.framework</groupId>
             <artifactId>testcommonv2</artifactId>
-            <version>1.4.1.1-SNAPSHOT</version>
+            <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
