@@ -1,27 +1,18 @@
 /*
- * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+ * The contents of this file are subject to the terms of the Common Development and
+ * Distribution License (the License). You may not use this file except in compliance with the
+ * License.
  *
- * Copyright (c) 2015 ForgeRock AS. All rights reserved.
+ * You can obtain a copy of the License at legal/CDDLv1.0.txt. See the License for the
+ * specific language governing permission and limitations under the License.
  *
- * The contents of this file are subject to the terms
- * of the Common Development and Distribution License
- * (the License). You may not use this file except in
- * compliance with the License.
+ * When distributing Covered Software, include this CDDL Header Notice in each file and include
+ * the License file at legal/CDDLv1.0.txt. If applicable, add the following below the CDDL
+ * Header, with the fields enclosed by brackets [] replaced by your own identifying
+ * information: "Portions copyright [year] [name of copyright owner]".
  *
- * You can obtain a copy of the License at
- * http://forgerock.org/license/CDDLv1.0.html
- * See the License for the specific language governing
- * permission and limitations under the License.
- *
- * When distributing Covered Code, include this CDDL
- * Header Notice in each file and include the License file
- * at http://forgerock.org/license/CDDLv1.0.html
- * If applicable, add the following below the CDDL Header,
- * with the fields enclosed by brackets [] replaced by
- * your own identifying information:
- * "Portions Copyrighted [year] [name of copyright owner]"
+ * Copyright 2015-2016 ForgeRock AS.
  */
-
 package org.forgerock.openicf.framework;
 
 import java.io.Closeable;
@@ -32,6 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
@@ -86,6 +78,9 @@ public class ConnectorFramework implements Closeable {
 
     private RemoteConnectionInfoManagerFactory remoteConnectionInfoManagerFactory = null;
 
+    private final ExecutorService messageExecutor = Executors.newCachedThreadPool(Utils.newThreadFactory(null,
+            "OpenICF ConnectorFramework Message executor %d", false));
+
     public ConnectorFramework(final ClassLoader defaultConnectorBundleParentClassLoader) {
         this.defaultConnectorBundleParentClassLoader = defaultConnectorBundleParentClassLoader;
     }
@@ -127,6 +122,8 @@ public class ConnectorFramework implements Closeable {
                 scheduledManagedFacadeCacheFuture = null;
             }
             scheduler.shutdown();
+
+            messageExecutor.shutdown();
 
             for (ConnectorFacade facade : MANAGED_FACADE_CACHE.values()) {
                 if (facade instanceof LocalConnectorFacadeImpl) {
@@ -295,6 +292,10 @@ public class ConnectorFramework implements Closeable {
             throw new IllegalArgumentException("Unknown ConnectorInfo type");
         }
         return ret;
+    }
+
+    public void executeMessage(Runnable processMessage) {
+        messageExecutor.execute(processMessage);
     }
 
     // ------ LocalConnectorFramework Implementation Start ------
